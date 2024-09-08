@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設定ページ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>設定ページ</h1>
+        <form method="POST">
+            <label for="new_value">新しいアイテムの値:</label>
+            <input type="number" id="new_value" name="new_value" required>
+            <label for="new_name">新しいアイテムの名前:</label>
+            <input type="text" id="new_name" name="new_name" required>
+            <button type="submit" class="long" name="add_item">追加</button>
+        </form>
+        <h2>現在のアイテムリスト</h2>
+        <ul>
+            {% for idx, (value, name) in enumerate(zip(aitems, aitems_EMC)) %}
+            <li>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="delete_index" value="{{ idx }}">
+                    <button type="submit" class="small" name="delete_item">削除</button>
+                </form>
+                <span class="middle">{{ name }} (値: {{ value }})</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">戻る</a>
+    </div>
+</body>
+</html>
