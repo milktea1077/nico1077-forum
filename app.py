@@ -122,5 +122,5 @@ def settings():
 def utility_processor():
     return dict(zip=zip, enumerate=enumerate)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# WSGIアプリケーションとしてFlaskを定義
+app = app
