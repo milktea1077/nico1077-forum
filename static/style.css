@@ -1,101 +1,53 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* 上部に寄せる */
-    min-height: 100vh;
-}
-
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
-    margin-top: 20px; /* 上に余白を追加 */
-}
-
-h1 {
-    text-align: center;
-    color: #343a40;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
+/* フォーム全体のスタイル */
 form {
     display: flex;
-    flex-direction: column; /* フォーム要素を縦に並べる */
-}
-
-label {
-    font-size: 14px;
-    color: #495057;
-    margin-bottom: 5px;
-}
-
-input {
+    flex-direction: column;  /* 要素を縦に並べる */
+    gap: 10px;  /* 要素間の間隔を確保 */
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;  /* フォームを中央揃え */
+  }
+  
+  /* 入力欄とラベルのスタイル */
+  label, input, button {
+    display: block;
+    width: 100%;  /* 入力欄とボタンを全幅に設定 */
+    margin-bottom: 10px;
+  }
+  
+  input[type="number"], input[type="text"], button {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-button {
-    padding: 10px 15px;
+  }
+  
+  button {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
-    width: 100%; /* ボタンを横幅いっぱいに */
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-hr {
-    margin: 20px 0;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-li {
-    background-color: #f1f3f5;
     padding: 10px;
-    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* 結果リストなどが縦に並ぶように設定 */
+  ul, ol {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between; /* 左右のアイテム間のスペースを確保 */
-    align-items: center; /* アイテムを縦に揃える */
-}
-
-li span {
-    display: block; /* アイテム名と数をブロック要素に */
-}
-
-a {
-    display: block;
+    font-size: 18px;
+  }
+  
+  /* 結果表示を中央に配置 */
+  .result {
     margin-top: 20px;
-    text-align: center;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
-}
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
