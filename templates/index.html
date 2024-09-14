@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最小枚数計算アプリ</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>最適なアイテム組み合わせ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>最小枚数計算アプリ</h1>
-        <form method="POST">
-            <label for="base_amount">支払いたい基本金額:</label>
-            <input type="number" id="base_amount" name="base_amount" required>
-            <label for="n_max">試行回数:</label>
-            <input type="number" id="n_max" name="n_max" required>
-            <button type="submit" class="long">計算</button>
-        </form>
-        <a href="{{ url_for('settings') }}">設定</a>
-        {% if result %}
-        <div class="result">
-            {% if result.error %}
+    <h1>最適なアイテム組み合わせを見つける</h1>
+    <form method="POST">
+        <label for="base_amount">基本金額:</label>
+        <input type="number" name="base_amount" id="base_amount" required>
+        
+        <label for="n_max">最大試行回数:</label>
+        <input type="number" name="n_max" id="n_max" required>
+        
+        <button type="submit">計算する</button>
+    </form>
+    
+    <hr>
+    
+    {% if result %}
+        <h2>結果</h2>
+        {% if result.error %}
             <p>{{ result.error }}</p>
-            {% else %}
+        {% else %}
             <p>最小の総数: {{ result.best_total_aitems }}個</p>
             <p>最良の作成個数: {{ result.best_n }}</p>
-            <p>元になるEMCの組み合わせ:</p>
             <ul>
                 {% for item in result.best_combination %}
-                <li>
-                    <span class="item-name">{{ item.name }}</span>
-                    <span class="item-count">{{ item.count }}個</span>
-                </li>
+                    <li>{{ item.name }} :: {{ item.count }}個</li>
                 {% endfor %}
             </ul>
             <p>計算回数: {{ result.calculation_count }}回</p>
             <p>処理時間: {{ result.elapsed_time }}秒</p>
-            {% endif %}
-        </div>
         {% endif %}
-    </div>
+    {% endif %}
+    
+    <a href="{{ url_for('settings') }}">設定</a>
 </body>
 </html>

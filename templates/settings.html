@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>設定ページ</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>設定ページ</h1>
-        <form method="POST">
-            <label for="new_value">新しいアイテムの値:</label>
-            <input type="number" id="new_value" name="new_value" required>
-            <label for="new_name">新しいアイテムの名前:</label>
-            <input type="text" id="new_name" name="new_name" required>
-            <button type="submit" class="long" name="add_item">追加</button>
-        </form>
-        <h2>現在のアイテムリスト</h2>
-        <ul>
-            {% for idx, (value, name) in enumerate(zip(aitems, aitems_EMC)) %}
-            <li>
+    <h1>アイテム設定</h1>
+    <form method="POST">
+        <label for="new_value">アイテムの価値:</label>
+        <input type="number" name="new_value" id="new_value" required>
+        
+        <label for="new_name">アイテムの名前:</label>
+        <input type="text" name="new_name" id="new_name" required>
+        
+        <button type="submit" name="add_item">追加</button>
+    </form>
+    
+    <hr>
+    
+    <h2>現在のアイテム一覧</h2>
+    <ul>
+        {% for index, (value, name) in enumerate(zip(aitems, aitems_EMC)) %}
+            <li>{{ name }} ({{ value }}) 
                 <form method="POST" style="display:inline;">
-                    <input type="hidden" name="delete_index" value="{{ idx }}">
-                    <button type="submit" class="small" name="delete_item">削除</button>
+                    <input type="hidden" name="delete_index" value="{{ index }}">
+                    <button type="submit" name="delete_item">削除</button>
                 </form>
-                <span class="middle">{{ name }} (値: {{ value }})</span>
             </li>
-            {% endfor %}
-        </ul>
-        <a href="{{ url_for('index') }}">戻る</a>
-    </div>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('index') }}">戻る</a>
 </body>
 </html>

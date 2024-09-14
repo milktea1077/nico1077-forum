@@ -117,10 +117,9 @@ def settings():
     
     return render_template("settings.html", aitems=aitems, aitems_EMC=aitems_EMC)
 
-# zipとenumerate関数をテンプレートに渡すためのcontext_processor
 @app.context_processor
 def utility_processor():
     return dict(zip=zip, enumerate=enumerate)
 
-# WSGIアプリケーションとしてFlaskを定義
-app = app
+if __name__ == "__main__":
+    app.run(debug=True)
