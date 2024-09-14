@@ -1,79 +1,101 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に寄せる */
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: white;
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin-top: 20px; /* 上に余白を追加 */
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* フォーム要素を縦に並べる */
 }
 
 label {
-    margin-bottom: 10px;
-    font-weight: bold;
+    font-size: 14px;
+    color: #495057;
+    margin-bottom: 5px;
 }
 
-input[type="number"] {
+input {
     padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-input[type="text"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-}
-
-.long {
-    padding: 10px;
-    background-color: #979797;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.middle {
-    font-size: 20px;
-}
-
-.small {
-    padding: 4px;
-    background-color: #979797;
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    width: 100%; /* ボタンを横幅いっぱいに */
 }
 
 button:hover {
-    background-color: #636363;
+    background-color: #0056b3;
 }
 
-.result {
+hr {
+    margin: 20px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    background-color: #f1f3f5;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* 左右のアイテム間のスペースを確保 */
+    align-items: center; /* アイテムを縦に揃える */
+}
+
+li span {
+    display: block; /* アイテム名と数をブロック要素に */
+}
+
+a {
+    display: block;
     margin-top: 20px;
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 20px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
 }
