@@ -1,3 +1,6 @@
+* {
+    text-align: center;
+}
 /* フォーム全体のスタイル */
 form {
     display: flex;
@@ -7,11 +10,18 @@ form {
     max-width: 500px;
     margin: 0 auto;  /* フォームを中央揃え */
   }
-  
+
+  div { 
+    display: flex;
+  }
+
+  span {
+    margin-top: 2px;
+  }
+
   /* 入力欄とラベルのスタイル */
   label, input, button {
     display: block;
-    width: 100%;  /* 入力欄とボタンを全幅に設定 */
     margin-bottom: 10px;
   }
   
@@ -21,15 +31,26 @@ form {
   }
   
   button {
-    background-color: #007bff;
+    background-color: #a5a5a5;
     color: white;
     border: none;
     cursor: pointer;
     padding: 10px;
+    border-radius: 50px;
   }
-  
+
+ .small {
+    padding: 4px;
+    font-size: 14px;
+    width: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    
+ }
+
   button:hover {
-    background-color: #0056b3;
+    background-color: #535353;
   }
   
   /* 結果リストなどが縦に並ぶように設定 */
@@ -37,10 +58,34 @@ form {
     list-style: none;
     padding: 0;
   }
+
+  .left {
+    gap: 10px;  /* 要素間の間隔を確保 */
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;  /* フォームを中央揃え */
+  }
+
+  .no-center {
+    text-align: left;
+  }
+
+  .no-no-center {
+    width: 100%;
+    max-width: 60px;
+    text-align: right;
+  }
   
   li {
-    margin-bottom: 10px;
     font-size: 18px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;  /* フォームを中央揃え */
+    padding-bottom: 10px;
+  }
+
+  .extra {
+    width:auto;
   }
   
   /* 結果表示を中央に配置 */

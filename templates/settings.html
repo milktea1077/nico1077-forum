@@ -8,13 +8,12 @@
 </head>
 <body>
     <h1>アイテム設定</h1>
-    <form method="POST">
-        <label for="new_value">アイテムの価値:</label>
-        <input type="number" name="new_value" id="new_value" required>
-        
-        <label for="new_name">アイテムの名前:</label>
+    <form method="POST" style="display: flex;">
+        <label for="new_name" style="display: flex;">アイテムの名前:</label>
         <input type="text" name="new_name" id="new_name" required>
-        
+
+        <label for="new_value" style="display: flex;">アイテムの価値:</label>
+        <input type="number" name="new_value" id="new_value" required>
         <button type="submit" name="add_item">追加</button>
     </form>
     
@@ -23,15 +22,16 @@
     <h2>現在のアイテム一覧</h2>
     <ul>
         {% for index, (value, name) in enumerate(zip(aitems, aitems_EMC)) %}
-            <li>{{ name }} ({{ value }}) 
-                <form method="POST" style="display:inline;">
+            <li style="display: flex;">
+                <form method="POST" action="{{ url_for('settings') }}" class="extra">
                     <input type="hidden" name="delete_index" value="{{ index }}">
-                    <button type="submit" name="delete_item">削除</button>
+                    <button type="submit" name="delete_item" class="small">削除</button>
                 </form>
+                <span>{{ name }} ({{ value }})</span>
             </li>
         {% endfor %}
     </ul>
-    
+
     <a href="{{ url_for('index') }}">戻る</a>
 </body>
 </html>

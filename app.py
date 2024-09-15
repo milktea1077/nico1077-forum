@@ -1,13 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import itertools
 from functools import lru_cache
 import time
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # セッションに必要なキー
 
 # アイテムリストと対応する名前を保持するグローバル変数
 aitems = [8192, 2048, 384, 256, 85, 1]
 aitems_EMC = ["ダイヤ", "金", "グローストーン", "鉄", "銅", "焼石"]
+
+# 削除したアイテムを保持するための変数
+deleted_item = None
 
 # メモ化を利用した最適化
 @lru_cache(maxsize=None)
@@ -103,7 +107,8 @@ def index():
 
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
-    global aitems, aitems_EMC
+    global aitems, aitems_EMC, deleted_item
+
     if request.method == "POST":
         if 'add_item' in request.form:
             new_value = int(request.form.get("new_value"))
@@ -112,8 +117,20 @@ def settings():
             aitems_EMC.append(new_name)
         elif 'delete_item' in request.form:
             delete_index = int(request.form.get("delete_index"))
+            deleted_item = {
+                'value': aitems[delete_index],
+                'name': aitems_EMC[delete_index],
+                'index': delete_index
+            }
             del aitems[delete_index]
             del aitems_EMC[delete_index]
+            return redirect(url_for('settings'))  # ページをリダイレクトして削除が反映されるようにする
+
+    if request.args.get('undo') and deleted_item:
+        aitems.insert(deleted_item['index'], deleted_item['value'])
+        aitems_EMC.insert(deleted_item['index'], deleted_item['name'])
+        deleted_item = None  # 元に戻したら削除したアイテムをリセット
+        return redirect(url_for('settings'))  # ページをリダイレクトして変更が反映されるようにする
     
     return render_template("settings.html", aitems=aitems, aitems_EMC=aitems_EMC)
 
